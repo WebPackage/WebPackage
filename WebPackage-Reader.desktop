@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Name=WebPackage-Reader
+Exec=/usr/bin/WebPackage-Reader
+Comment=WebPackage Reader
+StartupNotify=false
+GenericName=WebPackage Reader
