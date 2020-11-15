@@ -25,7 +25,7 @@
 */
 
 #include "QFlowView.h"
-
+#include "main.h"
 
 
 // for fixed-point arithmetic, we need minimum 32-bit long
@@ -1123,9 +1123,13 @@ void QFlowView::keyPressEvent(QKeyEvent* event)
 void QFlowView::mousePressEvent(QMouseEvent* event)
 {
   if(event->x() > width()/2)
+  {
     showNext();
+  }
   else
+  {
     showPrevious();
+  }
 }
 
 void QFlowView::paintEvent(QPaintEvent* event)
@@ -1146,6 +1150,9 @@ void QFlowView::updateAnimation()
   d->animator->update();
   triggerRender();
   if(d->state->centerIndex != old_center)
+  {
     emit centerIndexChanged(d->state->centerIndex);
+    main::updateTitle();
+  }
 }
 

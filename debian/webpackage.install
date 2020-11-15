@@ -1,2 +1,3 @@
 bin/WebPackage-Reader usr/bin
 WebPackage-Reader.desktop usr/share/applications
+src/webpkg-read.ico usr/share/pixmaps

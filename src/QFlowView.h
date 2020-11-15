@@ -30,6 +30,7 @@
 #include <qwidget.h>
 #include "webpkg.h"
 
+
 // detect Qt version
 #if QT_VERSION >= 0x040000
 #define QFLOWVIEW_QT4

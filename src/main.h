@@ -1,5 +1,12 @@
 #ifndef MAIN_H
 #define MAIN_H
+#include "browser.h"
+#include "flow.h"
+#include "QFlowView.h"
+#include "webpkg.h"
+#include "info.h"
+#include "quazip/JlCompress.h"
+
 #include <QApplication>
 #include <qdir.h>
 #include <qevent.h>
@@ -15,7 +22,6 @@
 #include <QTime>
 #endif
 
-#include "QFlowView.h"
 #if QT_VERSION < 0x040000
 #define modifiers state
 #define AltModifier AltButton
@@ -25,10 +31,19 @@
 #if QT_VERSION < 0x030000
 #define flush flushX
 #endif
-void importPkg(QString path);
-void exportPkg(QString path);
-void start();
-void info();
-void deletePkg();
-void refresh();
+class main : QObject
+{
+    Q_OBJECT
+public slots:
+static void importPkg(QString path);
+static void exportPkg(QString path);
+static void start();
+static void info();
+static void deletePkg();
+static void refresh();
+static void updateTitle();
+static void connectStuff();
+};
+
+
 #endif // MAIN_H

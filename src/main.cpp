@@ -1,10 +1,5 @@
-#include "browser.h"
-#include "flow.h"
-#include "QFlowView.h"
-#include "webpkg.h"
 #include "main.h"
-#include "info.h"
-#include "quazip/JlCompress.h"
+
 QList<Package> packages;
 int argc = 0;
 char **argv;
@@ -12,6 +7,7 @@ QApplication * a = new QApplication(argc, argv);
 Browser * b = new Browser;
 Flow * f = new Flow;
 QFlowView * flowView = f->findChild<QFlowView*>("flowView");
+QLabel * label = f->findChild<QLabel*>("label");
 QWebEngineView * webView = b->findChild<QWebEngineView*>("webView");
 bool copyPath(QString sourceDir, QString destinationDir, bool overWriteDirectory)
 {
@@ -66,7 +62,6 @@ void initialize()
     flowView->setSlideSize(QSize(256, 256));
     QDir root = QDir(QDir::homePath() + "/.webpkg");
     root.setFilter(QDir::Dirs| QDir::NoDotAndDotDot | QDir::NoSymLinks);
-
     qDebug() << "Scanning: " << root.path();
 
     QStringList pakList = root.entryList();
@@ -110,9 +105,11 @@ void initialize()
     flowView->setCenterIndex(flowView->slideCount()/2);
 
     flowView->setBackgroundColor(Qt::black);
+    f->setWindowIcon(QIcon(":/images/icon/webpkg-read.ico"));
+    main::updateTitle();
 }
 
-void importPkg(QString path)
+void main::importPkg(QString path)
 {
   QFileInfo archive;
   archive.setFile(path);
@@ -144,7 +141,7 @@ void importPkg(QString path)
       flowView->setCenterIndex(flowView->slideCount()/2);
   }
 }
-void exportPkg(QString path)
+void main::exportPkg(QString path)
 {
     QFileInfo archive;
     archive.setFile(path);
@@ -157,13 +154,13 @@ void exportPkg(QString path)
         temp.remove();
     }
 }
-void start()
+void main::start()
 {
     Package pak = flowView->getCurrentPackage();
     webView->setUrl(QUrl(QString("file://" + QDir::homePath() + "/.webpkg/" + pak.id + ".web/app/index.html")));
     b->showFullScreen();
 }
-void info()
+void main::info()
 {
     Package pak = flowView->getCurrentPackage();
     Info * i = new Info;
@@ -175,7 +172,7 @@ void info()
     i->show();
 
 }
-void deletePkg()
+void main::deletePkg()
 {
     Package pak = flowView->getCurrentPackage();
     QDir(QDir::homePath() + "/.webpkg/" + pak.id + ".web").removeRecursively();
@@ -183,19 +180,28 @@ void deletePkg()
     flowView->clear();
     initialize();
 }
-void refresh()
+void main::refresh()
 {
     packages.clear();
     flowView->clear();
     initialize();
+}
+void main::updateTitle()
+{
+    Package pak = flowView->getCurrentPackage();
+    label->setText(pak.title);
+}
+
+void main::connectStuff()
+{
+    a->connect( a, SIGNAL(lastWindowClosed()), a, SLOT(quit()));
 }
 int main()
 {
   initialize();
 
   f->show();
-
-  a->connect( a, SIGNAL(lastWindowClosed()), a, SLOT(quit()) );
+  main::connectStuff();
   int result = a->exec();
 
   delete flowView;

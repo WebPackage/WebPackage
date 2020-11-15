@@ -16,30 +16,30 @@ Flow::~Flow()
 
 void Flow::on_actionImport_triggered()
 {
-    importPkg(QFileDialog::getOpenFileName(this, tr("Open Package For Import"), QDir::homePath(), tr("Web Packages (*.webpkg)")));
+    main::importPkg(QFileDialog::getOpenFileName(this, tr("Open Package For Import"), QDir::homePath(), tr("Web Packages (*.webpkg)")));
 }
 
 void Flow::on_InfoButton_clicked()
 {
-    info();
+    main::info();
 }
 
 void Flow::on_startButton_clicked()
 {
-    start();
+    main::start();
 }
 
 void Flow::on_actionExport_triggered()
 {
-    exportPkg(QFileDialog::getSaveFileName(this, tr("Save Package For Export"), QDir::homePath(), tr("Web Packages (*.webpkg)")));
+    main::exportPkg(QFileDialog::getSaveFileName(this, tr("Save Package For Export"), QDir::homePath(), tr("Web Packages (*.webpkg)")));
 }
 
 void Flow::on_actionDelete_triggered()
 {
-    deletePkg();
+    main::deletePkg();
 }
 
 void Flow::on_actionRefresh_triggered()
 {
-    refresh();
+    main::refresh();
 }
