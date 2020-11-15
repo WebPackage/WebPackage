@@ -5,6 +5,6 @@ Terminal=false
 Name=WebPackage-Reader
 Exec=/usr/bin/WebPackage-Reader
 Comment=WebPackage Reader
-Icon=/usr/share/pixmaps/webpkg-read.ico
+Icon=/usr/share/pixmaps/webpkg-read.png
 StartupNotify=false
 GenericName=WebPackage Reader

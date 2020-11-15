@@ -1,0 +1,3 @@
+bin/WebPackage-Gen usr/bin
+WebPackage-Gen.desktop usr/share/applications
+gen/webpkg-gen.png usr/share/pixmaps

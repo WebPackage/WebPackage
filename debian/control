@@ -13,3 +13,11 @@ Description: WebPackage is a revolutionary way of distributing web apps.
  WebPackage is a revolutionary new way of distributing web apps on any platform. 
  It works by packaging the web app in a .webpkg file, a special kind of zip file 
  designed for distributing web apps.
+
+Package: webpackage-dev
+Architecture: any
+Depends: libqt5gui5, libqt5widgets5, webpackage, libqt5core5a, ${misc:Depends}, ${shlibs:Depends}
+Description: WebPackage is a revolutionary way of distributing web apps. 
+ WebPackage is a revolutionary new way of distributing web apps on any platform. 
+ It works by packaging the web app in a .webpkg file, a special kind of zip file 
+ designed for distributing web apps.

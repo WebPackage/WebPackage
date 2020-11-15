@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/images/icon">
+        <file>webpkg-gen.png</file>
+    </qresource>
+    <qresource prefix="/resources/meta">
+        <file>icon.png</file>
+    </qresource>
+</RCC>
