@@ -40,6 +40,9 @@ void generate();
 int main(int argc, char *argv[])
 {
     QApplication * app = new QApplication(argc, argv);
+    app->setApplicationName("webpackage-gen");
+    app->setApplicationVersion("1.4.1");
+    app->setApplicationDisplayName("WebPackage-Gen");
     QCommandLineParser parser;
     parser.setApplicationDescription("WebPackage Skeleton Generator");
     parser.addHelpOption();

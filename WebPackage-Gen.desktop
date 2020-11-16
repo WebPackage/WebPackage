@@ -2,7 +2,7 @@
 Version=1.0
 Type=Application
 Terminal=false
-Name=WebPackage-Gen
+Name=WebPackage Gen
 Exec=/usr/bin/WebPackage-Gen
 Comment=WebPackage Gen
 Icon=/usr/share/pixmaps/webpkg-gen.png

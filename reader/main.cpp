@@ -1,14 +1,12 @@
 #include "main.h"
 
 QList<Package> packages;
-int argc = 0;
-char **argv;
-QApplication * a = new QApplication(argc, argv);
-Browser * b = new Browser;
-Flow * f = new Flow;
-QFlowView * flowView = f->findChild<QFlowView*>("flowView");
-QLabel * label = f->findChild<QLabel*>("label");
-QWebEngineView * webView = b->findChild<QWebEngineView*>("webView");
+QApplication * a;
+Browser * b;
+Flow * f;
+QFlowView * flowView;
+QLabel * label;
+QWebEngineView * webView;
 bool copyPath(QString sourceDir, QString destinationDir, bool overWriteDirectory)
 {
     QDir originDirectory(sourceDir);
@@ -196,8 +194,28 @@ void main::connectStuff()
 {
     a->connect( a, SIGNAL(lastWindowClosed()), a, SLOT(quit()));
 }
-int main()
+int main(int argc, char *argv[])
 {
+  a = new QApplication(argc, argv);
+  b = new Browser;
+  f = new Flow;
+  flowView = f->findChild<QFlowView*>("flowView");
+  label = f->findChild<QLabel*>("label");
+  webView = b->findChild<QWebEngineView*>("webView");
+  a->setApplicationName("webpackage-reader");
+  a->setApplicationVersion("1.4.1");
+  a->setApplicationDisplayName("WebPackage-Reader");
+  QCommandLineParser parser;
+  parser.setApplicationDescription("WebPackage Reader");
+  parser.addHelpOption();
+  parser.addVersionOption();
+  parser.addPositionalArgument("package", "Package file to import");
+  parser.process(*a);
+  const QStringList args = parser.positionalArguments();
+  if (args.size() == 1)
+  {
+      main::importPkg(args.at(0));
+  }
   initialize();
 
   f->show();

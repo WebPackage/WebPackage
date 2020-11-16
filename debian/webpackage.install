@@ -1,3 +1,5 @@
 bin/WebPackage-Reader usr/bin
 WebPackage-Reader.desktop usr/share/applications
 reader/webpkg-read.png usr/share/pixmaps
+webpkg.xml usr/share/mime/packages
+application-webpkg.svg usr/share/icons/Yaru/scalable/mimetypes
